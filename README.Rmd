@@ -1,8 +1,7 @@
 ---
-output: md_document
+title: "JJJ Stock Analysis"
+output: rmarkdown::github_document
 ---
-
-# JJJ Stock Analysis
 
 ```{r}
 # import data

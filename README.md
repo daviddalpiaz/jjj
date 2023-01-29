@@ -1,22 +1,33 @@
-# JJJ Stock Analysis
+JJJ Stock Analysis
+================
 
-    # import data
-    away = read.csv(file = "data/jjj-away.csv")
-    home = read.csv(file = "data/jjj-home.csv")
+``` r
+# import data
+away = read.csv(file = "data/jjj-away.csv")
+home = read.csv(file = "data/jjj-home.csv")
+```
 
-    # add "where" variable
-    home$WHERE = "home"
-    away$WHERE = "away"
+``` r
+# add "where" variable
+home$WHERE = "home"
+away$WHERE = "away"
+```
 
-    # combine data
-    data = rbind(home, away)
+``` r
+# combine data
+data = rbind(home, away)
+```
 
-    # subset to relevant columns
-    data = data[, c("STOCK", "WHERE")]
+``` r
+# subset to relevant columns
+data = data[, c("STOCK", "WHERE")]
+```
 
-    # fit poisson regression
-    fit = glm(STOCK ~ WHERE, data = data, family = "poisson")
-    summary(fit)
+``` r
+# fit poisson regression
+fit = glm(STOCK ~ WHERE, data = data, family = "poisson")
+summary(fit)
+```
 
     ## 
     ## Call:
@@ -41,5 +52,5 @@
     ## 
     ## Number of Fisher Scoring iterations: 5
 
--   Original data source:
-    <https://docs.google.com/spreadsheets/d/1Q8mgET8hyUOtn8XSchWZL-Jip9kPrwoF8eWS_7KOwwI/>
+- Original data source:
+  <https://docs.google.com/spreadsheets/d/1Q8mgET8hyUOtn8XSchWZL-Jip9kPrwoF8eWS_7KOwwI/>
