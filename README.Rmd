@@ -10,6 +10,17 @@ home = read.csv(file = "data/jjj-home.csv")
 ```
 
 ```{r}
+first = function(x) {
+  x[[1]]
+}
+```
+
+```{r}
+away$MP = as.numeric(sapply(strsplit(away$MP, split = ":"), first))
+home$MP = as.numeric(sapply(strsplit(home$MP, split = ":"), first))
+```
+
+```{r}
 # add "where" variable
 home$WHERE = "home"
 away$WHERE = "away"
@@ -22,13 +33,18 @@ data = rbind(home, away)
 
 ```{r}
 # subset to relevant columns
-data = data[, c("STOCK", "WHERE")]
+data = data[, c("STOCK", "MP", "WHERE")]
 ```
 
 ```{r}
 # fit poisson regression
-fit = glm(STOCK ~ WHERE, data = data, family = "poisson")
+fit = glm(STOCK ~ WHERE + MP, data = data, family = "poisson")
+```
+
+```{r}
+# check results
 summary(fit)
 ```
 
 - Original data source: https://docs.google.com/spreadsheets/d/1Q8mgET8hyUOtn8XSchWZL-Jip9kPrwoF8eWS_7KOwwI/
+- Reddit thread: https://old.reddit.com/r/nba/comments/10ni0nv/analysis_there_is_a_0000003_chance_that_the/
