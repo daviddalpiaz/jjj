@@ -1,0 +1,35 @@
+---
+output: md_document
+---
+
+# JJJ Stock Analysis
+
+```{r}
+# import data
+away = read.csv(file = "data/jjj-away.csv")
+home = read.csv(file = "data/jjj-home.csv")
+```
+
+```{r}
+# add "where" variable
+home$WHERE = "home"
+away$WHERE = "away"
+```
+
+```{r}
+# combine data
+data = rbind(home, away)
+```
+
+```{r}
+# subset to relevant columns
+data = data[, c("STOCK", "WHERE")]
+```
+
+```{r}
+# fit poisson regression
+fit = glm(STOCK ~ WHERE, data = data, family = "poisson")
+summary(fit)
+```
+
+- Original data source: https://docs.google.com/spreadsheets/d/1Q8mgET8hyUOtn8XSchWZL-Jip9kPrwoF8eWS_7KOwwI/
