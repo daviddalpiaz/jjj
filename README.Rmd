@@ -10,12 +10,14 @@ home = read.csv(file = "data/jjj-home.csv")
 ```
 
 ```{r}
+# helper function
 first = function(x) {
   x[[1]]
 }
 ```
 
 ```{r}
+# quick hack to get "MP" (just the minutes part)
 away$MP = as.numeric(sapply(strsplit(away$MP, split = ":"), first))
 home$MP = as.numeric(sapply(strsplit(home$MP, split = ":"), first))
 ```
